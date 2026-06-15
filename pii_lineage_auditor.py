@@ -6,11 +6,11 @@ from pyspark.sql import functions as F
 # ==============================================================================
 # CONFIGURAÇÃO DE ENTRADA (MANTÉM TODAS AS SUAS TABELAS NA ORDEM)
 # ==============================================================================
-VARIACOES_ALVO = []
+VARIACOES_ALVO = ["cpf", "cpf_tratado", "cpf_cnpj_capturado_cliente", "particao_cpf","cpf_string"]
 
-VARIACOES_CPF_EXPANDIDO = []
+VARIACOES_CPF_EXPANDIDO = ["cpf", "cpf_tratado", "cpf_cnpj_capturado_cliente", "particao_cpf","cpf_string"]
 
-TABELAS_ALVO = []
+TABELAS_ALVO = ["sua_tabela1","sua_tabela2","sua_tabela3","sua_tabela4"]
 
 df_ordem = spark.createDataFrame([(t, i) for i, t in enumerate(TABELAS_ALVO)], ["Tabela_Original", "Ordem_Original"])
 
