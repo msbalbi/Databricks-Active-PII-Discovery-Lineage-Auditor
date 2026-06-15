@@ -26,28 +26,28 @@ Saída de código
 Markdown structured successfully.
 
 [Configuração: Tabelas e Alvos]
-│
+
 ▼
 
-│ 1. Busca Metadados Global (Information Schema)│
+1. Busca Metadados Global (Information Schema)
 
-│
+
 ▼
 
-│ 2. Extração de Linhagem Viva (System Access) │
+2. Extração de Linhagem Viva (System Access)
 
-│
+
 ▼
 
-│ 3. Mapeamento de Estruturas das Consumidoras  │
+3. Mapeamento de Estruturas das Consumidoras
 
-│
+
 ▼
 
-│ 4. Unificação Absoluta e Aliases Seguros     │
+4. Unificação Absoluta e Aliases Seguros     
 
-│
+
 ▼
 
-│ 5. Processamento das Regras de Negócio Finais│
+5. Processamento das Regras de Negócio Finais
 
