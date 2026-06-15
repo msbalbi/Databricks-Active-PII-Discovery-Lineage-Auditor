@@ -1,5 +1,4 @@
-# Create the README.md content and code block content
-readme_content = """# Databricks Active PII Discovery & Lineage Auditor
+# Databricks Active PII Discovery & Lineage Auditor
 
 Este repositório contém um motor de auditoria automatizada desenvolvido em **PySpark** focado em **Data Discovery Ativo e Análise de Impacto de Linhagem** dentro do ecossistema Databricks utilizando o **Unity Catalog**.
 
