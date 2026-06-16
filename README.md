@@ -1,52 +1,39 @@
-# Databricks Active PII Discovery & Lineage Auditor
+# 🏛️ Databricks Unity Catalog - Active Governance & Audit Ecosystem
 
-Este repositório contém um motor de auditoria automatizada desenvolvido em **PySpark** focado em **Data Discovery Ativo e Análise de Impacto de Linhagem** dentro do ecossistema Databricks utilizando o **Unity Catalog**.
+Este repositório reúne um ecossistema de ferramentas e motores de auditoria automatizada desenvolvidos em **PySpark**. O objetivo central é transformar a Governança de Dados e o Compliance regulatório dentro do **Databricks Unity Catalog** em indicadores técnicos, dinâmicos e mensuráveis por código, eliminando a dependência de mapeamentos manuais ou planilhas estáticas.
 
-O script realiza uma varredura profunda no `information_schema.columns` e cruza os metadados com as tabelas de sistema de linhagem ativa (`system.access.table_lineage`), permitindo rastrear o ciclo de vida, a paridade de tipos e as exportações secundárias de informações sensíveis (PII - *Personally Identifiable Information*), tomando como exemplo o **CPF** e suas diversas variações de nomenclatura operacionais.
-
-## 🚀 Principais Perguntas que o Projeto Responde
-
-1. **Onde estão os dados sensíveis? (Active Data Discovery)**
-   Identifica quais tabelas das camadas Silver e Gold possuem armazenamento de documentos confidenciais, mapeando variações dinâmicas de colunas, analisando comentários e metadados.
-2. **Qual é a integridade do dado trafegado? (Paridade de Tipos)**
-   Mapeia se o documento sofreu conversão implicando perda de integridade (ex: alteração de `STRING` para `BIGINT` causando a perda de zeros à esquerda). O script aponta o status dinâmico para evitar quebras em integrações e relatórios de CRM.
-3. **Para onde o dado sensível está vazando? (Linhagem Ativa)**
-   Rastreia de forma cirúrgica as tabelas consumidoras finais que ainda estão vivas e ativas no sistema, descartando metadados históricos de objetos temporários já excluídos.
-4. **Existem exportações para sistemas terceiros? (Data Privacy Exfiltration)**
-   Sinaliza imediatamente se o dado confidencial está caindo em tabelas de extração destinadas a integrações com parceiros via APIs ou arquivos (ex: Salesforce, Zendesk, etc.).
+O ecossistema está estrategicamente dividido em dois grandes módulos de engenharia de metadados:
 
 ---
 
-## 🛠️ Arquitetura do Motor de Auditoria
+## 📂 Estrutura do Repositório
 
-O script é estruturado de forma linear e performática, dividido em 5 fases principais:
+### 🔗 [01. Active PII Discovery & Lineage Auditor](./01-pii-lineage-audit)
+Motor focado em **segurança, privacidade e conformidade com a LGPD**. Ele realiza uma varredura profunda nas tabelas de sistema para rastrear o ciclo de vida e o impacto de dados sensíveis (PII), tomando como exemplo prático o CPF.
+* **Destaques:** Rastreamento de linhagem viva de consumo (`system.access.table_lineage`), detecção de quebra de integridade por tipagem (perda de zeros à esquerda ao converter `STRING` para `BIGINT`) e alertas de vazamento em tabelas de exportação para CRMs/APIs parceiras.
 
-Saída de código
-Markdown structured successfully.
+### 📊 [02. Data Catalog Health Check & Documentation Score](./02-data-catalog-health-check)
+Motor focado na **saúde global, maturidade e documentação do Lakehouse**. Ele varre o `system.information_schema` para mapear a qualidade descritiva das camadas de dados (Silver, Gold, etc.).
+* **Destaques:** Classificação automática do status de documentação por linhas e colunas (*"Crítico: Sem nenhuma documentação"*, *"Parcial"*, *"100% Documentado"*). Fornece uma métrica executiva ideal para comitês de dados e prepara a arquitetura para o uso confiável de IA Generativa (RAG/LLM).
 
-[Configuração: Tabelas e Alvos]
+---
 
-▼
+## 🎯 Principais Dores de Negócio que este Ecossistema Resolve
 
-1. Busca Metadados Global (Information Schema)
+* **Redução do Débito Técnico:** Mapeia de forma cirúrgica os pontos cegos de infraestrutura e tabelas criadas sem contexto.
+* **Autonomia do Negócio (Self-Service BI):** Identifica os gargalos de documentação que geram chamados excessivos na TI e atrasam o time-to-market dos analistas de negócio.
+* **Prontidão para IA (AI-Ready Metadata):** Garante que os metadados do Unity Catalog estejam ricos o suficiente para que agentes de IA (como o Databricks Assistant) trabalhem sem alucinar.
+* **Auditoria por Squads/Tribos:** Permite isolar os indicadores por Catálogo e Schema, evidenciando quais times estão seguindo as boas práticas de governança.
 
+---
 
-▼
+## 🚀 Requisitos Gerais
 
-2. Extração de Linhagem Viva (System Access)
+* Workspace Databricks com o **Unity Catalog** habilitado.
+* Ativação das **System Tables** (`system.information_schema` e `system.access`).
+* Cluster ativo com suporte a queries em PySpark/SparkSQL.
 
+Para instruções específicas de execução e arquitetura de cada motor, acesse os READMEs internos de cada diretório.
 
-▼
-
-3. Mapeamento de Estruturas das Consumidoras
-
-
-▼
-
-4. Unificação Absoluta e Aliases Seguros     
-
-
-▼
-
-5. Processamento das Regras de Negócio Finais
-
+---
+💡 *Este ecossistema foi desenvolvido para demonstrar a aplicação prática de engenharia de dados sênior voltada para arquiteturas modernas de governança ativa e DataOps.*
